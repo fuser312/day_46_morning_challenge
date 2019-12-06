@@ -58,16 +58,24 @@ List outputList = [];
 // Stage 2
 // Implement the algorithm to calculate the maximum coins that can be earned.
 
-int burstBallonsIndex(List<int> ballonList, int index){
+int burstBalloonsIndex(List<int> ballonList, int index){
 
-    int left = index - 1 < 0 ? 1 : ballonList[index-1];
-    int right = index + 1 >= ballonList.length-1 ? 1 : ballonList[index+1];
-    return ballonList[index] * left * right;
+    if(ballonList.isEmpty){
+      return 0;
+    }
+    else if(ballonList.length == 1){
+      return 0;
+    }
+    else {
+      int left = index - 1 < 0 ? 1 : ballonList[index - 2];
+      int right = index + 1 > ballonList.length  ? 1 : ballonList[index];
+      return ballonList[index-1] * left * right;
+    }
 
 
 }
 
 main() {
-  print(burstBallonsIndex([2,4,6,8,10], 4));
+  print(burstBalloonsIndex([2,4,6,8,10], 4));
   print(distributeCandies(7, 5));
 }
