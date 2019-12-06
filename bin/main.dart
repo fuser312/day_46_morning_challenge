@@ -17,6 +17,30 @@
 // Input: candies = 7, num_people = 4
 //  Output: [1,2,3,1]
 
+List<int>distributeCandies(int candies, int people){
+  int i = 0;
+  int loops = 0;
+  List <int> outputList = List<int>.generate(people, (i) => 0);
+  while(candies > 0){
+    if(i == people){
+      i = 0;
+      loops++;
+    }
+    int currentCandy = (loops * people) + (i + 1);
+    if(candies - currentCandy < 0){
+      outputList[i] = outputList[i] + candies;
+    }
+    else{
+      outputList[i] = (outputList[i]+currentCandy);
+    }
+    i++;
+    candies = candies - currentCandy;
+  }
+  return outputList;
+}
+
+List outputList = [];
+
 
 // Challenge 2
 // Burst Balloons
@@ -34,5 +58,16 @@
 // Stage 2
 // Implement the algorithm to calculate the maximum coins that can be earned.
 
+int burstBallonsIndex(List<int> ballonList, int index){
 
-main() {}
+    int left = index - 1 < 0 ? 1 : ballonList[index-1];
+    int right = index + 1 >= ballonList.length-1 ? 1 : ballonList[index+1];
+    return ballonList[index] * left * right;
+
+
+}
+
+main() {
+  print(burstBallonsIndex([2,4,6,8,10], 4));
+  print(distributeCandies(7, 5));
+}
