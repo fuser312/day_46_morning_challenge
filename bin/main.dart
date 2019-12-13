@@ -64,7 +64,7 @@ int burstBalloonsIndex(List<int> ballonList, int index){
       return 0;
     }
     else if(ballonList.length == 1){
-      return 0;
+      return ballonList[0];
     }
     else {
       int left = index - 1 < 0 ? 1 : ballonList[index - 2];
@@ -73,6 +73,19 @@ int burstBalloonsIndex(List<int> ballonList, int index){
     }
 
 
+}
+
+int maximumCoins(List<int> ballonList){
+
+  List listOfBallons = List.from(ballonList);
+  for(int i = 0; i< listOfBallons.length -1; i++){
+    int max = 0;
+    int prevMax = 1;
+    int finalOutput = max * prevMax;
+    for (int j = 0; j< listOfBallons.length; j++){
+      max = burstBalloonsIndex(listOfBallons, j) > max ? burstBalloonsIndex(listOfBallons, j) : max;
+    }
+  }
 }
 
 main() {
